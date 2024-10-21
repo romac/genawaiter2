@@ -1,6 +1,7 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::cargo, clippy::pedantic)]
 #![cfg_attr(feature = "strict", deny(warnings))]
+#![no_std]
 
 #[macro_export]
 #[cfg(feature = "proc_macro")]
