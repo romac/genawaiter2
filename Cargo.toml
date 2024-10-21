@@ -29,7 +29,6 @@ rustversion = "1.0.2"
 trybuild = "1"
 
 [features]
-alloc = []
 default = ["proc_macro", "rc", "sync"]
 stream = ["dep:futures-core"]
 nightly = []
