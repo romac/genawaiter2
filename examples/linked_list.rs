@@ -13,7 +13,7 @@ fn main() {
 
 #[cfg(feature = "proc_macro")]
 fn main() {
-    use genawaiter::{rc::gen, yield_};
+    use genawaiter2::{rc::gen, yield_};
 
     #[derive(Debug)]
     pub struct List<T> {

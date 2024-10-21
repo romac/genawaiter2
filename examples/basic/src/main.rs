@@ -5,7 +5,7 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
 
-use genawaiter::{sync::gen, yield_};
+use genawaiter2::{sync::gen, yield_};
 
 fn main() {
     let odd_numbers_less_than_ten = gen!({

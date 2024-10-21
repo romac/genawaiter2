@@ -80,7 +80,7 @@ impl<'s, Y, R, F: Future> Gen<'s, Y, R, F> {
     /// # Examples
     ///
     /// ```rust
-    /// # use genawaiter::stack::{Co, Gen, Shelf};
+    /// # use genawaiter2::stack::{Co, Gen, Shelf};
     /// #
     /// # async fn producer(co: Co<'_, i32>) { /* ... */ }
     /// #

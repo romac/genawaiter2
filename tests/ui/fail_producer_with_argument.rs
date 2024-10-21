@@ -1,4 +1,4 @@
-use genawaiter::stack::producer_fn;
+use genawaiter2::stack::producer_fn;
 
 #[producer_fn(u8)]
 async fn odds(co: Co<'_, u8>) {

@@ -3,27 +3,27 @@
 version = 3
 
 [[package]]
-name = "genawaiter"
+name = "genawaiter2"
 version = "0.99.1"
 dependencies = [
- "genawaiter-macro",
- "genawaiter-proc-macro",
+ "genawaiter2-macro",
+ "genawaiter2-proc-macro",
 ]
 
 [[package]]
-name = "genawaiter-example-basic"
+name = "genawaiter2-example-basic"
 version = "0.0.0"
 dependencies = [
- "genawaiter",
+ "genawaiter2",
 ]
 
 [[package]]
-name = "genawaiter-macro"
-version = "0.99.1"
+name = "genawaiter2-macro"
+version = "0.1.0"
 
 [[package]]
-name = "genawaiter-proc-macro"
-version = "0.99.1"
+name = "genawaiter2-proc-macro"
+version = "0.1.0"
 dependencies = [
  "proc-macro-error",
  "proc-macro-hack",

@@ -1,4 +1,4 @@
-use genawaiter::{stack::Co};
+use genawaiter2::{stack::Co};
 
 #[allow(unused_variables)]
 async fn wrong(mut co: Co<i32>) {

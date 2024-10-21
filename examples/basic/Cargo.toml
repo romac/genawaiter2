@@ -1,7 +1,7 @@
 # https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-name = "genawaiter-example-basic"
+name = "genawaiter2-example-basic"
 version = "0.0.0"
 authors = ["John Simon <john@whatisaph.one>"]
 edition = "2018"
@@ -10,4 +10,4 @@ license = "MIT"
 [workspace]
 
 [dependencies]
-genawaiter = { path = "../.." }
+genawaiter2 = { path = "../.." }

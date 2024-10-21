@@ -8,7 +8,7 @@ You can create a basic generator with [`let_gen!`] and [`yield_!`].
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_};
+# use genawaiter2::{stack::let_gen, yield_};
 #
 let_gen!(my_generator, {
     yield_!(10);
@@ -21,7 +21,7 @@ If you don't like macros, you can use the low-level API directly, though note th
 requires you to trade away safety.
 
 ```rust
-# use genawaiter::stack::{Co, Gen, Shelf};
+# use genawaiter2::stack::{Co, Gen, Shelf};
 #
 async fn my_producer(mut co: Co<'_, u8>) {
     co.yield_(10).await;
@@ -40,7 +40,7 @@ Generators implement `Iterator`, so you can use them in a for loop:
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-use genawaiter::{stack::let_gen, yield_};
+use genawaiter2::{stack::let_gen, yield_};
 
 let_gen!(odds_under_ten, {
     let mut n = 1;
@@ -64,7 +64,7 @@ for num in odds_under_ten {
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_};
+# use genawaiter2::{stack::let_gen, yield_};
 #
 # let_gen!(odds_under_ten, {
 #     for n in (1..).step_by(2).take_while(|&n| n < 10) { yield_!(n); }
@@ -82,7 +82,7 @@ Like any closure, you can capture values from outer scopes.
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_, GeneratorState};
+# use genawaiter2::{stack::let_gen, yield_, GeneratorState};
 #
 let two = 2;
 let_gen!(multiply, {
@@ -97,7 +97,7 @@ assert_eq!(multiply.resume(()), GeneratorState::Yielded(20));
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_, GeneratorState};
+# use genawaiter2::{stack::let_gen, yield_, GeneratorState};
 #
 # let_gen!(odds_under_ten, {
 #     for n in (1..).step_by(2).take_while(|&n| n < 10) { yield_!(n); }
@@ -123,7 +123,7 @@ place the value could go where the generator could observe it.
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_};
+# use genawaiter2::{stack::let_gen, yield_};
 #
 let_gen!(check_numbers, {
     let num = yield_!(());
@@ -147,7 +147,7 @@ yielded.
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::let_gen, yield_, GeneratorState};
+# use genawaiter2::{stack::let_gen, yield_, GeneratorState};
 #
 let_gen!(numbers_then_string, {
     yield_!(10);
@@ -166,7 +166,7 @@ assert_eq!(numbers_then_string.resume(()), GeneratorState::Complete("done!"));
 ```rust
 # #[cfg(feature = "proc_macro")]
 # fn feature_gate() {
-# use genawaiter::{stack::{let_gen_using, producer_fn}, yield_, GeneratorState};
+# use genawaiter2::{stack::{let_gen_using, producer_fn}, yield_, GeneratorState};
 #
 #[producer_fn(u8)]
 async fn produce() {
@@ -184,7 +184,7 @@ You can define an `async fn` directly, instead of relying on the `gen!` or `prod
 macros.
 
 ```rust
-use genawaiter::stack::{let_gen_using, Co};
+use genawaiter2::stack::{let_gen_using, Co};
 
 async fn producer(mut co: Co<'_, i32>) {
     let mut n = 1;
@@ -202,7 +202,7 @@ assert_eq!(result, [1, 3, 5, 7, 9]);
 ## Using the low-level API with an async closure (nightly Rust only)
 
 ```ignore
-# use genawaiter::{stack::let_gen_using, GeneratorState};
+# use genawaiter2::{stack::let_gen_using, GeneratorState};
 #
 let_gen_using!(gen, async move |co| {
     co.yield_(10).await;
@@ -216,7 +216,7 @@ assert_eq!(gen.resume(()), GeneratorState::Complete(()));
 ## Using the low-level API with an async <del>closure</del> faux·sure (for stable Rust)
 
 ```
-# use genawaiter::{stack::let_gen_using, GeneratorState};
+# use genawaiter2::{stack::let_gen_using, GeneratorState};
 #
 let_gen_using!(gen, |mut co| async move {
     co.yield_(10).await;
@@ -232,7 +232,7 @@ assert_eq!(gen.resume(()), GeneratorState::Complete(()));
 This is just ordinary Rust, nothing special.
 
 ```rust
-# use genawaiter::{stack::{let_gen_using, Co}, GeneratorState};
+# use genawaiter2::{stack::{let_gen_using, Co}, GeneratorState};
 #
 async fn multiples_of(num: i32, mut co: Co<'_, i32>) {
     let mut cur = num;
@@ -277,7 +277,7 @@ pub use crate::stack::{
 ///
 /// [_See the module-level docs for examples._](.)
 #[cfg(feature = "proc_macro")]
-pub use genawaiter_macro::stack_let_gen as let_gen;
+pub use genawaiter2_macro::stack_let_gen as let_gen;
 
 /// Creates a generator using a producer defined elsewhere.
 ///
@@ -313,7 +313,7 @@ pub use genawaiter_macro::stack_let_gen as let_gen;
 /// # Examples
 ///
 /// [_See the module-level docs for examples._](.)
-pub use genawaiter_macro::stack_let_gen_using as let_gen_using;
+pub use genawaiter2_macro::stack_let_gen_using as let_gen_using;
 
 /// Turns a function into a producer, which can then be used to create a
 /// generator.
@@ -324,7 +324,7 @@ pub use genawaiter_macro::stack_let_gen_using as let_gen_using;
 ///
 /// [_See the module-level docs for examples._](.)
 #[cfg(feature = "proc_macro")]
-pub use genawaiter_proc_macro::stack_producer_fn as producer_fn;
+pub use genawaiter2_proc_macro::stack_producer_fn as producer_fn;
 
 #[macro_use]
 mod macros;

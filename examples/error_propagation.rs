@@ -17,7 +17,7 @@ fn main() {
 
 #[cfg(feature = "proc_macro")]
 fn main() -> Result<(), Box<dyn Error>> {
-    use genawaiter::{sync::gen, yield_};
+    use genawaiter2::{sync::gen, yield_};
 
     fn main() -> Result<(), Box<dyn Error>> {
         // Create a generator which yields values of type `Result<String, _>`

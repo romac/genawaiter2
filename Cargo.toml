@@ -1,14 +1,14 @@
 # https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-name = "genawaiter"
+name = "genawaiter2"
 version = "0.99.1"
 authors = ["John Simon <john@whatisaph.one>"]
 edition = "2018"
 license = "MIT"
 description = "Stackless generators on stable Rust."
-repository = "https://github.com/whatisaphone/genawaiter"
-documentation = "https://docs.rs/genawaiter"
+repository = "https://github.com/romac/genawaiter2"
+documentation = "https://docs.rs/genawaiter2"
 readme = "README-crates-io.md"
 keywords = ["generator", "yield", "coroutine", "async", "await"]
 categories = ["asynchronous", "concurrency", "rust-patterns"]
@@ -16,11 +16,11 @@ include = ["Cargo.toml", "README-crates-io.md", "src/**/*.rs"]
 
 [dependencies]
 futures-core = { version = "0.3.1", optional = true }
-genawaiter-proc-macro = { version = "0.99.1", path = "./genawaiter-proc-macro", optional = true }
-genawaiter-macro = { version = "0.99.1", path = "./genawaiter-macro" }
+genawaiter2-proc-macro = { version = "0.1.0", path = "./genawaiter2-proc-macro", optional = true }
+genawaiter2-macro = { version = "0.1.0", path = "./genawaiter2-macro" }
 
 [workspace]
-members = ["genawaiter-macro", "genawaiter-proc-macro"]
+members = ["genawaiter2-macro", "genawaiter2-proc-macro"]
 
 [dev-dependencies]
 futures = "0.3.1"
@@ -32,7 +32,7 @@ trybuild = "1"
 default = ["proc_macro", "rc", "sync"]
 stream = ["dep:futures-core"]
 nightly = []
-proc_macro = ["dep:genawaiter-proc-macro", "genawaiter-macro/proc_macro"]
+proc_macro = ["dep:genawaiter2-proc-macro", "genawaiter2-macro/proc_macro"]
 rc = []
 std = []
 sync = ["std"]

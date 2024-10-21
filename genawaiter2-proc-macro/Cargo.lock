@@ -4,7 +4,7 @@
 name = "gen_yielder"
 version = "0.0.0"
 dependencies = [
- "genawaiter 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "genawaiter2 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "proc-macro-error 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "proc-macro2 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "quote 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "genawaiter"
+name = "genawaiter2"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
@@ -92,7 +92,7 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
-"checksum genawaiter 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "10914120a307084cbc3553f2e2618e335f57795d5e60909b4756237d98329937"
+"checksum genawaiter2 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)" = "10914120a307084cbc3553f2e2618e335f57795d5e60909b4756237d98329937"
 "checksum proc-macro-error 0.4.4 (registry+https://github.com/rust-lang/crates.io-index)" = "53c98547ceaea14eeb26fcadf51dc70d01a2479a7839170eae133721105e4428"
 "checksum proc-macro-error-attr 0.4.3 (registry+https://github.com/rust-lang/crates.io-index)" = "c2bf5d493cf5d3e296beccfd61794e445e830dfc8070a9c248ad3ee071392c6c"
 "checksum proc-macro2 1.0.6 (registry+https://github.com/rust-lang/crates.io-index)" = "9c9e470a8dc4aeae2dee2f335e8f533e2d4b347e1434e5671afc49b054592f27"

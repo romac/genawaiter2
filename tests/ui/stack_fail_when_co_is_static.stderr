@@ -1,4 +1,4 @@
-warning: `$DIR/target/tests/genawaiter/.cargo/config` is deprecated in favor of `config.toml`
+warning: `$DIR/target/tests/genawaiter2/.cargo/config` is deprecated in favor of `config.toml`
 note: if you need to support cargo 1.38 or earlier, you can symlink `config` to `config.toml`
 error[E0597]: `shelf` does not live long enough
   --> $DIR/stack_fail_when_co_is_static.rs:8:5

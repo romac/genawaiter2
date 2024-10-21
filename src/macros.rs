@@ -15,7 +15,7 @@
 macro_rules! yield_ {
     ($val:expr) => {
         compile_error!(
-            "`yield_!()` can only be used inside one of the genawaiter macros",
+            "`yield_!()` can only be used inside one of the genawaiter2 macros",
         )
     };
     (@__impl => $co:expr, $value:expr) => {

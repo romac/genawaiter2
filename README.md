@@ -1,26 +1,27 @@
-# genawaiter
+# genawaiter2
 
 [![crate-badge]][crate-link] [![docs-badge]][docs-link] [![ci-badge]][ci-link]
 
-[crate-badge]: https://img.shields.io/crates/v/genawaiter.svg
-[crate-link]: https://crates.io/crates/genawaiter
-[docs-badge]: https://docs.rs/genawaiter/badge.svg
-[docs-link]: https://docs.rs/genawaiter
-[ci-badge]: https://github.com/whatisaphone/genawaiter/workflows/CI/badge.svg
-[ci-link]: https://github.com/whatisaphone/genawaiter/actions
+[crate-badge]: https://img.shields.io/crates/v/genawaiter2.svg
+[crate-link]: https://crates.io/crates/genawaiter2
+[docs-badge]: https://docs.rs/genawaiter2/badge.svg
+[docs-link]: https://docs.rs/genawaiter2
+[ci-badge]: https://github.com/romac/genawaiter2/workflows/CI/badge.svg
+[ci-link]: https://github.com/romac/genawaiter2/actions
 
-This crate implements stackless generators (aka coroutines) in stable Rust. Instead of using `yield`, which [won't be stabilized anytime soon][yield-unstable], you use `async`/`await`, which is stable today.
+This crate is a fork of [`genawaiter`][genawaiter] a crate which implements stackless generators (aka coroutines) in stable Rust. Instead of using `yield`, which [won't be stabilized anytime soon][yield-unstable], you use `async`/`await`, which is stable today.
 
+[genawaiter]: https://github.com/whatisaphone/genawaiter
 [yield-unstable]: https://doc.rust-lang.org/nightly/unstable-book/language-features/generators.html
 
 Features:
 
-- supports resume arguments and completion values
-- supports async generators (e.g., `Stream`s)
-- allocation-free
-- no runtime dependencies
-  - no compile-time dependencies either, with `default-features = false`
-- built on top of standard language constructs, which means there are no platform-specific shenanigans
+- Supports resume arguments and completion values
+- Supports async generators (e.g., `Stream`s)
+- Allocation-free
+- No runtime dependencies
+  - No compile-time dependencies either, with `default-features = false`
+- Built on top of standard language constructs, which means there are no platform-specific shenanigans
 
 Example:
 
@@ -61,7 +62,7 @@ let odd_numbers_less_than_ten = Gen::new(|co| async move {
 });
 ```
 
-[See the docs for more.](https://docs.rs/genawaiter)
+[See the docs for more.](https://docs.rs/genawaiter2)
 
 ## Development
 

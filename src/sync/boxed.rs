@@ -19,7 +19,7 @@ impl<Y, R, C> GenBoxed<Y, R, C> {
     /// the correct type on the second line:
     ///
     /// ```compile_fail
-    /// # use genawaiter::sync::{Co, Gen, GenBoxed};
+    /// # use genawaiter2::sync::{Co, Gen, GenBoxed};
     /// # use core::{future::Future, pin::Pin};
     /// #
     /// # async fn producer(co: Co<i32>) {

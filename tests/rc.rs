@@ -1,7 +1,7 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
 
-use genawaiter::rc::{Co, Gen};
+use genawaiter2::rc::{Co, Gen};
 
 async fn odd_numbers_less_than_ten(mut co: Co<i32>) {
     for n in (1..).step_by(2).take_while(|&n| n < 10) {
@@ -29,7 +29,7 @@ fn test_stream() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_proc_macro_fn() {
-    use genawaiter::{rc::producer_fn, yield_};
+    use genawaiter2::{rc::producer_fn, yield_};
 
     #[producer_fn(u8)]
     async fn odds() {
@@ -45,7 +45,7 @@ fn rc_proc_macro_fn() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_yield_a_func_method_call() {
-    use genawaiter::{rc::producer_fn, yield_};
+    use genawaiter2::{rc::producer_fn, yield_};
 
     fn pass_thru(n: u8) -> u8 {
         n
@@ -66,7 +66,7 @@ fn rc_yield_a_func_method_call() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_proc_macro_closure() {
-    use genawaiter::{rc_producer, yield_};
+    use genawaiter2::{rc_producer, yield_};
 
     let gen = Gen::new(rc_producer!({
         let mut n = 1_u8;
@@ -82,7 +82,7 @@ fn rc_proc_macro_closure() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_proc_macro_closure_yield2() {
-    use genawaiter::{rc_producer, yield_};
+    use genawaiter2::{rc_producer, yield_};
 
     let gen = Gen::new(rc_producer!({
         let mut n = 1_u8;
@@ -99,7 +99,7 @@ fn rc_proc_macro_closure_yield2() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_convenience_macro() {
-    use genawaiter::{rc::gen, yield_};
+    use genawaiter2::{rc::gen, yield_};
 
     let g = gen!({
         let mut n = 1;
@@ -115,7 +115,7 @@ fn rc_convenience_macro() {
 #[cfg(feature = "proc_macro")]
 #[test]
 fn rc_convenience_macro_resume() {
-    use genawaiter::{rc::gen, yield_, GeneratorState};
+    use genawaiter2::{rc::gen, yield_, GeneratorState};
 
     let mut gen = gen!({
         let resume_arg = yield_!(10_u8);

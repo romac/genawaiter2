@@ -117,22 +117,22 @@ pub fn rc_producer(input: TokenStream) -> TokenStream {
 
 mod stack {
     pub(crate) const CO_ARG_FN: &str =
-        "mut __private_co_arg__: ::genawaiter::stack::Co<'_, ";
+        "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, ";
     pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter::stack::Co<'_, _, _>";
+        "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, _, _>";
 }
 
 mod sync {
     pub(crate) const CO_ARG_FN: &str =
-        "mut __private_co_arg__: ::genawaiter::sync::Co<";
+        "mut __private_co_arg__: ::genawaiter2::sync::Co<";
     pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter::sync::Co<_, _>";
+        "mut __private_co_arg__: ::genawaiter2::sync::Co<_, _>";
 }
 
 mod rc {
-    pub(crate) const CO_ARG_FN: &str = "mut __private_co_arg__: ::genawaiter::rc::Co<";
+    pub(crate) const CO_ARG_FN: &str = "mut __private_co_arg__: ::genawaiter2::rc::Co<";
     pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter::rc::Co<_, _>";
+        "mut __private_co_arg__: ::genawaiter2::rc::Co<_, _>";
 }
 
 /// Mutates the input `Punctuated<FnArg, Comma>` to a lifetimeless `co:

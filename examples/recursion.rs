@@ -11,7 +11,7 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
 
-use genawaiter::sync::{Gen, GenBoxed};
+use genawaiter2::sync::{Gen, GenBoxed};
 
 fn main() {
     for n in countdown(10) {
