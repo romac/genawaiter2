@@ -317,7 +317,6 @@ pub use genawaiter_proc_macro::rc_producer;
 pub use genawaiter_proc_macro::stack_producer;
 
 mod core;
-mod ext;
 #[macro_use]
 mod macros;
 mod ops;
