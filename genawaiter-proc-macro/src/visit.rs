@@ -23,6 +23,6 @@ impl VisitMut for YieldReplace {
             }
         }
 
-        visit_mut::visit_expr_mut(self, expr)
+        visit_mut::visit_expr_mut(self, expr);
     }
 }

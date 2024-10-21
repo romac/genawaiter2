@@ -464,7 +464,7 @@ mod tests {
             // `gen` is only a reference to the generator, and dropping a reference has
             // no effect. The underlying generator is hidden behind macro hygiene and so
             // cannot be dropped early.
-            #[allow(clippy::drop_ref)]
+            #[allow(dropping_references)]
             drop(gen);
             assert_eq!(flag.load(Ordering::SeqCst), false);
         }

@@ -33,6 +33,7 @@ pub fn stack_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 #[proc_macro_error]
+#[allow(clippy::manual_let_else)]
 pub fn stack_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
@@ -67,6 +68,7 @@ pub fn sync_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 #[proc_macro_error]
+#[allow(clippy::manual_let_else)]
 pub fn sync_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
@@ -100,6 +102,7 @@ pub fn rc_producer_fn(args: TokenStream, input: TokenStream) -> TokenStream {
 
 #[proc_macro]
 #[proc_macro_error]
+#[allow(clippy::manual_let_else)]
 pub fn rc_producer(input: TokenStream) -> TokenStream {
     let mut input = parse_macro_input!(input as ExprBlock);
 
@@ -146,17 +149,18 @@ fn add_coroutine_arg(func: &mut ItemFn, co_ty: &str) {
             _ => false,
         },
     });
-    if !co_arg_found {
-        let co_arg: FnArg = match parse_str::<FnArg>(co_ty) {
-            Ok(s) => s,
-            Err(err) => abort_call_site!(format!("invalid type for Co yield {}", err)),
-        };
-        func.sig.inputs.push_value(co_arg)
-    } else {
+
+    if co_arg_found {
         abort!(
             func.sig.span(),
             "A generator producer cannot accept any arguments. Instead, consider \
              using a closure and capturing the values you need.",
         )
+    } else {
+        let co_arg: FnArg = match parse_str::<FnArg>(co_ty) {
+            Ok(s) => s,
+            Err(err) => abort_call_site!(format!("invalid type for Co yield {}", err)),
+        };
+        func.sig.inputs.push_value(co_arg);
     }
 }
