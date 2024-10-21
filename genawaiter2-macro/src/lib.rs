@@ -6,10 +6,7 @@
 #[cfg(feature = "proc_macro")]
 macro_rules! stack_let_gen {
     ($name:ident, $body:expr $(,)?) => {
-        ::genawaiter2::stack::let_gen_using!(
-            $name,
-            ::genawaiter2::stack_producer!($body),
-        );
+        ::genawaiter2::stack::let_gen_using!($name, ::genawaiter2::stack_producer!($body),);
     };
 }
 
@@ -28,8 +25,7 @@ macro_rules! stack_let_gen_using {
         // the same lifetime as `generator`, and so the invariant of `Gen::new` cannot
         // be violated.
         let mut shelf = ::genawaiter2::stack::Shelf::new();
-        let mut generator =
-            unsafe { ::genawaiter2::stack::Gen::new(&mut shelf, $producer) };
+        let mut generator = unsafe { ::genawaiter2::stack::Gen::new(&mut shelf, $producer) };
         let $name = &mut generator;
     };
 }

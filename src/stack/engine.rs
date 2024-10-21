@@ -26,10 +26,7 @@ impl<'s, Y, R> core::Airlock for &'s Airlock<Y, R> {
         inner.without_values()
     }
 
-    fn replace(
-        &self,
-        next: Next<Self::Yield, Self::Resume>,
-    ) -> Next<Self::Yield, Self::Resume> {
+    fn replace(&self, next: Next<Self::Yield, Self::Resume>) -> Next<Self::Yield, Self::Resume> {
         // Safety: This follows the safety rules above.
         unsafe { ptr::replace(self.0.get(), next) }
     }

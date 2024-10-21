@@ -133,7 +133,7 @@ impl<'s, Y, R, F: Future> Gen<'s, Y, R, F> {
     /// [_See the module-level docs for examples._](.)
     pub fn async_resume(
         &mut self,
-        arg: R
+        arg: R,
     ) -> impl Future<Output = GeneratorState<Y, F::Output>> + '_ {
         self.airlock.replace(Next::Resume(arg));
         async_advance(self.future.as_mut(), self.airlock)
@@ -159,10 +159,7 @@ impl<'s, Y, R, F: Future> Generator<R> for Gen<'s, Y, R, F> {
     type Yield = Y;
     type Return = F::Output;
 
-    fn resume(
-        self: Pin<&mut Self>,
-        arg: R,
-    ) -> GeneratorState<Self::Yield, Self::Return> {
+    fn resume(self: Pin<&mut Self>, arg: R) -> GeneratorState<Self::Yield, Self::Return> {
         // Safety: `Gen::resume` does not move `self`.
         let this = unsafe { self.get_unchecked_mut() };
         this.resume(arg)

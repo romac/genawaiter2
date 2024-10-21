@@ -12,8 +12,8 @@ impl VisitMut for YieldReplace {
     fn visit_expr_mut(&mut self, expr: &mut Expr) {
         if let Expr::Macro(m) = expr {
             if m.mac.path.segments.iter().any(|seg| seg.ident == "yield_") {
-                let tkns: TokenStream2 = syn::parse2(m.mac.tokens.clone())
-                    .expect("parse of TokensStream failed");
+                let tkns: TokenStream2 =
+                    syn::parse2(m.mac.tokens.clone()).expect("parse of TokensStream failed");
 
                 let co_call = quote! {
                     yield_!(@__impl => __private_co_arg__, #tkns)

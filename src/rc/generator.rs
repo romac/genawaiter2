@@ -69,10 +69,7 @@ impl<Y, R, F: Future> Generator<R> for Gen<Y, R, F> {
     type Yield = Y;
     type Return = F::Output;
 
-    fn resume(
-        mut self: Pin<&mut Self>,
-        arg: R,
-    ) -> GeneratorState<Self::Yield, Self::Return> {
+    fn resume(mut self: Pin<&mut Self>, arg: R) -> GeneratorState<Self::Yield, Self::Return> {
         Self::resume(&mut *self, arg)
     }
 }

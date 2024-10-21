@@ -108,10 +108,7 @@ pub trait Airlock {
 
     fn peek(&self) -> Next<(), ()>;
 
-    fn replace(
-        &self,
-        next: Next<Self::Yield, Self::Resume>,
-    ) -> Next<Self::Yield, Self::Resume>;
+    fn replace(&self, next: Next<Self::Yield, Self::Resume>) -> Next<Self::Yield, Self::Resume>;
 }
 
 pub struct Co<A: Airlock> {
@@ -162,8 +159,8 @@ impl<'a, A: Airlock> Future for Barrier<'a, A> {
 
     fn poll(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
         match self.airlock.peek() {
-            Next::Yield(_) => Poll::Pending,
-            Next::Resume(_) => {
+            Next::Yield(()) => Poll::Pending,
+            Next::Resume(()) => {
                 let next = self.airlock.replace(Next::Empty);
                 match next {
                     Next::Resume(arg) => Poll::Ready(arg),

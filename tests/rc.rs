@@ -39,7 +39,7 @@ fn rc_proc_macro_fn() {
     }
     let gen = Gen::new(odds);
     let res = gen.into_iter().collect::<Vec<_>>();
-    assert_eq!(vec![1, 3, 5, 7, 9], res)
+    assert_eq!(vec![1, 3, 5, 7, 9], res);
 }
 
 #[cfg(feature = "proc_macro")]
@@ -60,7 +60,7 @@ fn rc_yield_a_func_method_call() {
     }
     let gen = Gen::new(odds);
     let res = gen.into_iter().collect::<Vec<_>>();
-    assert_eq!(vec![1, 3, 5, 7, 9], res)
+    assert_eq!(vec![1, 3, 5, 7, 9], res);
 }
 
 #[cfg(feature = "proc_macro")]
@@ -76,7 +76,7 @@ fn rc_proc_macro_closure() {
         }
     }));
     let res = gen.into_iter().collect::<Vec<_>>();
-    assert_eq!(vec![1, 3, 5, 7, 9], res)
+    assert_eq!(vec![1, 3, 5, 7, 9], res);
 }
 
 #[cfg(feature = "proc_macro")]
@@ -93,7 +93,7 @@ fn rc_proc_macro_closure_yield2() {
         }
     }));
     let res = gen.into_iter().collect::<Vec<_>>();
-    assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10], res)
+    assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10], res);
 }
 
 #[cfg(feature = "proc_macro")]
@@ -109,7 +109,7 @@ fn rc_convenience_macro() {
         }
     });
     let res = g.into_iter().collect::<Vec<_>>();
-    assert_eq!(vec![1, 3, 5, 7, 9], res)
+    assert_eq!(vec![1, 3, 5, 7, 9], res);
 }
 
 #[cfg(feature = "proc_macro")]

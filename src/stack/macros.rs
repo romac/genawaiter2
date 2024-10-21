@@ -28,8 +28,7 @@ macro_rules! unsafe_create_generator {
     ($name:ident, $producer:expr $(,)?) => {
         let mut generator_state = $crate::stack::Shelf::new();
         #[allow(unused_mut)]
-        let mut $name =
-            unsafe { $crate::stack::Gen::new(&mut generator_state, $producer) };
+        let mut $name = unsafe { $crate::stack::Gen::new(&mut generator_state, $producer) };
     };
 }
 

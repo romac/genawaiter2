@@ -354,11 +354,11 @@ mod tests {
         testing::{DummyFuture, SlowFuture},
         GeneratorState,
     };
-    use futures::executor::block_on;
     use core::{
         cell::{Cell, RefCell},
         future::Future,
     };
+    use futures::executor::block_on;
 
     async fn simple_producer(mut co: Co<i32>) -> &'static str {
         co.yield_(10).await;

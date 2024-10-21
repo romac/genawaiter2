@@ -47,7 +47,6 @@ impl<Y, R, F: Future> Gen<Y, R, F> {
         advance(self.future.as_mut(), &self.airlock)
     }
 
-
     /// Resumes execution of the generator.
     ///
     /// If the generator pauses without yielding, `Poll::Pending` is returned.
@@ -68,10 +67,7 @@ impl<Y, R, F: Future> Generator<R> for Gen<Y, R, F> {
     type Yield = Y;
     type Return = F::Output;
 
-    fn resume(
-        mut self: Pin<&mut Self>,
-        arg: R,
-    ) -> GeneratorState<Self::Yield, Self::Return> {
+    fn resume(mut self: Pin<&mut Self>, arg: R) -> GeneratorState<Self::Yield, Self::Return> {
         Self::resume(&mut *self, arg)
     }
 }

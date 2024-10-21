@@ -6,8 +6,8 @@ use proc_macro::TokenStream;
 use proc_macro_error::{abort, abort_call_site, proc_macro_error};
 use quote::quote;
 use syn::{
-    self, parse_macro_input, parse_str, spanned::Spanned, visit_mut::VisitMut,
-    ExprBlock, FnArg, Ident, ItemFn, Type,
+    self, parse_macro_input, parse_str, spanned::Spanned, visit_mut::VisitMut, ExprBlock, FnArg,
+    Ident, ItemFn, Type,
 };
 
 mod visit;
@@ -116,23 +116,18 @@ pub fn rc_producer(input: TokenStream) -> TokenStream {
 }
 
 mod stack {
-    pub(crate) const CO_ARG_FN: &str =
-        "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, ";
-    pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, _, _>";
+    pub(crate) const CO_ARG_FN: &str = "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, ";
+    pub(crate) const CO_ARG: &str = "mut __private_co_arg__: ::genawaiter2::stack::Co<'_, _, _>";
 }
 
 mod sync {
-    pub(crate) const CO_ARG_FN: &str =
-        "mut __private_co_arg__: ::genawaiter2::sync::Co<";
-    pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter2::sync::Co<_, _>";
+    pub(crate) const CO_ARG_FN: &str = "mut __private_co_arg__: ::genawaiter2::sync::Co<";
+    pub(crate) const CO_ARG: &str = "mut __private_co_arg__: ::genawaiter2::sync::Co<_, _>";
 }
 
 mod rc {
     pub(crate) const CO_ARG_FN: &str = "mut __private_co_arg__: ::genawaiter2::rc::Co<";
-    pub(crate) const CO_ARG: &str =
-        "mut __private_co_arg__: ::genawaiter2::rc::Co<_, _>";
+    pub(crate) const CO_ARG: &str = "mut __private_co_arg__: ::genawaiter2::rc::Co<_, _>";
 }
 
 /// Mutates the input `Punctuated<FnArg, Comma>` to a lifetimeless `co:
@@ -141,9 +136,11 @@ fn add_coroutine_arg(func: &mut ItemFn, co_ty: &str) {
     let co_arg_found = func.sig.inputs.iter().any(|input| match input {
         FnArg::Receiver(_) => false,
         FnArg::Typed(arg) => match &*arg.ty {
-            Type::Path(ty) => ty.path.segments.iter().any(|seg| {
-                seg.ident == parse_str::<Ident>("Co").expect("Ident parse failed")
-            }),
+            Type::Path(ty) => ty
+                .path
+                .segments
+                .iter()
+                .any(|seg| seg.ident == parse_str::<Ident>("Co").expect("Ident parse failed")),
             _ => false,
         },
     });

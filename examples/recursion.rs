@@ -15,22 +15,20 @@ use genawaiter2::sync::{Gen, GenBoxed};
 
 fn main() {
     for n in countdown(10) {
-        println!("{}", n);
+        println!("{n}");
     }
 }
 
 fn countdown(start: i32) -> GenBoxed<i32> {
-    Gen::new_boxed(|mut co| {
-        async move {
-            if start == 0 {
-                return;
-            }
+    Gen::new_boxed(|mut co| async move {
+        if start == 0 {
+            return;
+        }
 
-            co.yield_(start).await;
+        co.yield_(start).await;
 
-            for n in countdown(start - 1) {
-                co.yield_(n).await;
-            }
+        for n in countdown(start - 1) {
+            co.yield_(n).await;
         }
     })
 }

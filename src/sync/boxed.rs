@@ -4,8 +4,7 @@ use core::{future::Future, pin::Pin};
 /// This is a type alias for generators which can be stored in a `'static`. It's
 /// only really needed to help the compiler's type inference along.
 #[allow(clippy::module_name_repetitions)]
-pub type GenBoxed<Y, R = (), C = ()> =
-    Gen<Y, R, Pin<Box<dyn Future<Output = C> + Send>>>;
+pub type GenBoxed<Y, R = (), C = ()> = Gen<Y, R, Pin<Box<dyn Future<Output = C> + Send>>>;
 
 impl<Y, R, C> GenBoxed<Y, R, C> {
     /// Creates a new generator with a boxed future, so it can be stored in a
