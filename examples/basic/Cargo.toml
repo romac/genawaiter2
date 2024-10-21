@@ -11,6 +11,3 @@ license = "MIT"
 
 [dependencies]
 genawaiter = { path = "../.." }
-
-[features]
-strict = []

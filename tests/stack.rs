@@ -1,6 +1,5 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
-#![cfg_attr(feature = "strict", deny(warnings))]
 
 use genawaiter::stack::{let_gen_using, Co, Gen, Shelf};
 
@@ -121,13 +120,11 @@ fn stack_yield_match() {
 fn stack_yield_closure_no_macro() {
     let mut shelf = genawaiter::stack::Shelf::new();
     let gen = unsafe {
-        Gen::new(&mut shelf, |mut co| {
-            async move {
-                let mut n = 1;
-                while n < 10 {
-                    co.yield_(n).await;
-                    n += 2;
-                }
+        Gen::new(&mut shelf, |mut co| async move {
+            let mut n = 1;
+            while n < 10 {
+                co.yield_(n).await;
+                n += 2;
             }
         })
     };

@@ -6,8 +6,6 @@
 
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
-#![cfg_attr(feature = "strict", deny(warnings))]
-
 #[cfg(not(feature = "proc_macro"))]
 fn main() {
     println!("Feature `proc_macro` is required for this example.");

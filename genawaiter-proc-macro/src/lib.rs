@@ -1,6 +1,5 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::cargo, clippy::pedantic)]
-#![cfg_attr(feature = "strict", deny(warnings))]
 
 use crate::visit::YieldReplace;
 use proc_macro::TokenStream;

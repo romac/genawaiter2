@@ -4,7 +4,6 @@
 
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
-#![cfg_attr(feature = "strict", deny(warnings))]
 
 use genawaiter::{sync::gen, yield_};
 
