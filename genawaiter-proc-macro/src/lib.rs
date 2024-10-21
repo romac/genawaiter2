@@ -6,7 +6,6 @@ use crate::visit::YieldReplace;
 use proc_macro::TokenStream;
 use proc_macro_error::{abort, abort_call_site, proc_macro_error};
 use quote::quote;
-use std::string::ToString;
 use syn::{
     self, parse_macro_input, parse_str, spanned::Spanned, visit_mut::VisitMut,
     ExprBlock, FnArg, Ident, ItemFn, Type,

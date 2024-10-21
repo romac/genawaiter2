@@ -118,8 +118,7 @@ Values can be yielded from the generator by calling `yield_`, and immediately aw
 the future it returns. You can get these values out of the generator in either of two
 ways:
 
-- Call `resume()` or `resume_with()`. The values will be returned in a
-  `GeneratorState::Yielded`.
+- Call `resume()`. The values will be returned in a `GeneratorState::Yielded`.
 
   ```rust
   # #[cfg(feature = "proc_macro")]
@@ -129,7 +128,7 @@ ways:
   let mut generator = gen!({
       yield_!(10);
   });
-  let ten = generator.resume();
+  let ten = generator.resume(());
   assert_eq!(ten, GeneratorState::Yielded(10));
   # }
   ```
@@ -152,7 +151,7 @@ ways:
 
 ## Resume
 
-You can also send values back into the generator, by using `resume_with`. The generator
+You can also send values back into the generator, by using `resume`. The generator
 receives them from the future returned by `yield_`.
 
 ```rust
@@ -166,8 +165,8 @@ let mut printer = gen!({
         println!("{}", string);
     }
 });
-printer.resume_with("hello");
-printer.resume_with("world");
+printer.resume("hello");
+printer.resume("world");
 # }
 ```
 
@@ -185,8 +184,8 @@ let mut generator = gen!({
     yield_!(10);
     "done"
 });
-assert_eq!(generator.resume(), GeneratorState::Yielded(10));
-assert_eq!(generator.resume(), GeneratorState::Complete("done"));
+assert_eq!(generator.resume(()), GeneratorState::Yielded(10));
+assert_eq!(generator.resume(()), GeneratorState::Complete("done"));
 # }
 ```
 
@@ -230,13 +229,13 @@ works even without the `futures03` feature.)
 # #[cfg(feature = "proc_macro")]
 # async fn feature_gate() {
 # use genawaiter::{sync::gen, yield_, GeneratorState};
-# use std::task::Poll;
+# use core::task::Poll;
 #
 # let mut gen = gen!({
 #     yield_!(10);
 # });
 #
-match gen.async_resume().await {
+match gen.async_resume(()).await {
     GeneratorState::Yielded(_) => {}
     GeneratorState::Complete(_) => {}
 }
@@ -250,10 +249,6 @@ This crate supplies [`Generator`](trait.Generator.html) and
 stability attributes removed) so they can be used on stable Rust. If/when real
 generators are stabilized, hopefully they would be drop-in replacements. Javascript
 developers might recognize this as a polyfill.
-
-There is also a [`Coroutine`](trait.Coroutine.html) trait, which does not come from the
-stdlib. A `Coroutine` is a generalization of a `Generator`. A `Generator` constrains the
-resume argument type to `()`, but in a `Coroutine` it can be anything.
 */
 
 #![cfg_attr(feature = "nightly", feature(async_closure))]
@@ -264,7 +259,7 @@ resume argument type to `()`, but in a `Coroutine` it can be anything.
 #[cfg(test)]
 extern crate self as genawaiter;
 
-pub use crate::ops::{Coroutine, Generator, GeneratorState};
+pub use crate::ops::{Generator, GeneratorState};
 
 /// Creates a producer for use with [`sync::Gen`].
 ///
@@ -284,7 +279,7 @@ pub use crate::ops::{Coroutine, Generator, GeneratorState};
 /// });
 ///
 /// let mut my_generator = Gen::new(my_producer);
-/// # my_generator.resume();
+/// # my_generator.resume(());
 /// ```
 #[cfg(feature = "proc_macro")]
 pub use genawaiter_proc_macro::sync_producer;
@@ -307,7 +302,7 @@ pub use genawaiter_proc_macro::sync_producer;
 /// });
 ///
 /// let mut my_generator = Gen::new(my_producer);
-/// # my_generator.resume();
+/// # my_generator.resume(());
 /// ```
 #[cfg(feature = "proc_macro")]
 pub use genawaiter_proc_macro::rc_producer;
@@ -320,8 +315,10 @@ mod core;
 #[macro_use]
 mod macros;
 mod ops;
+#[cfg(feature = "rc")]
 pub mod rc;
 pub mod stack;
+#[cfg(feature = "sync")]
 pub mod sync;
 #[cfg(test)]
 mod testing;
