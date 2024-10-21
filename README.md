@@ -62,34 +62,4 @@ let odd_numbers_less_than_ten = Gen::new(|co| async move {
 });
 ```
 
-[See the docs for more.](https://docs.rs/genawaiter2)
-
-## Development
-
-### Install prerequisites
-
-- [Rust]
-- [pre-commit]
-
-[Rust]: https://www.rust-lang.org/
-[pre-commit]: https://pre-commit.com/
-
-### Install the pre-commit hook
-
-```sh
-pre-commit install
-```
-
-This installs a Git hook that runs a quick sanity check before every commit.
-
-### Run the app
-
-```sh
-cargo run
-```
-
-### Run the tests
-
-```sh
-cargo test
-```
+[See the docs](https://docs.rs/genawaiter2) for more.
