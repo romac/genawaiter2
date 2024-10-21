@@ -1,3 +1,5 @@
+warning: `$DIR/target/tests/genawaiter/.cargo/config` is deprecated in favor of `config.toml`
+note: if you need to support cargo 1.38 or earlier, you can symlink `config` to `config.toml`
 error[E0499]: cannot borrow `co` as mutable more than once at a time
  --> $DIR/rc_fail_not_awaiting_yield.rs:6:15
   |
@@ -6,4 +8,4 @@ error[E0499]: cannot borrow `co` as mutable more than once at a time
 6 |     let bar = co.yield_(20);
   |               ^^ second mutable borrow occurs here
 7 | }
-  | - first borrow might be used here, when `foo` is dropped and runs the destructor for type `impl std::future::Future`
+  | - first borrow might be used here, when `foo` is dropped and runs the destructor for type `impl Future<Output = <genawaiter::rc::engine::Airlock<i32, ()> as genawaiter::core::Airlock>::Resume> + '_`

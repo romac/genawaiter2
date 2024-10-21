@@ -1,5 +1,12 @@
+warning: `$DIR/target/tests/genawaiter/.cargo/config` is deprecated in favor of `config.toml`
+note: if you need to support cargo 1.38 or earlier, you can symlink `config` to `config.toml`
 error[E0726]: implicit elided lifetime not allowed here
  --> $DIR/stack_fail_not_awaiting_yield.rs:4:24
   |
 4 | async fn wrong(mut co: Co<i32>) {
-  |                        ^^^^^^^ help: indicate the anonymous lifetime: `Co<'_, i32>`
+  |                        ^^^^^^^ expected lifetime parameter
+  |
+help: indicate the anonymous lifetime
+  |
+4 | async fn wrong(mut co: Co<'_, i32>) {
+  |                           +++
