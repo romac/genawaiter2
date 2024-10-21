@@ -25,7 +25,7 @@ macro_rules! yield_ {
 
 // Internal use only. This is a copy of `futures::pin_mut!` so we can avoid
 // pulling in a dependency for a two-liner.
-#[cfg(feature = "futures03")]
+#[cfg(feature = "stream")]
 macro_rules! pin_mut {
     ($x:ident) => {
         let mut $x = $x;

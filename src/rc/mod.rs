@@ -307,7 +307,7 @@ pub use genawaiter_proc_macro::rc_producer_fn as producer_fn;
 mod engine;
 mod generator;
 mod iterator;
-#[cfg(feature = "futures03")]
+#[cfg(feature = "stream")]
 mod stream;
 
 #[cfg(feature = "nightly")]

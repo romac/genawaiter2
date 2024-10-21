@@ -27,7 +27,7 @@ fn test_shelf() {
     assert_eq!(xs, [1, 3, 5, 7, 9]);
 }
 
-#[cfg(feature = "futures03")]
+#[cfg(feature = "stream")]
 #[test]
 fn test_stream() {
     use futures::executor::block_on_stream;

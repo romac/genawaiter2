@@ -13,7 +13,7 @@ with this crate, you can use them on stable Rust!
 
 This crate has these features:
 
-- `futures03` (disabled by default) – Implements `Stream` for all generator types.
+- `stream` (disabled by default) – Implements `Stream` for all generator types.
   Adds a dependency on `futures-core`.
 - `proc_macro` (enabled by default) – Adds support for macros, and adds various
   compile-time dependencies.
@@ -194,15 +194,15 @@ assert_eq!(generator.resume(()), GeneratorState::Complete("done"));
 If you await other futures inside the generator, it becomes an _async generator_. It
 does not makes sense to treat an async generator as an `Iterable`, since you cannot
 `await` an `Iterable`. Instead, you can treat it as a `Stream`. This requires opting in
-to the dependency on `futures` with the `futures03` feature.
+to the dependency on `futures` with the `stream` feature.
 
 ```toml
 [dependencies]
-genawaiter = { version = "...", features = ["futures03"] }
+genawaiter = { version = "...", features = ["stream"] }
 ```
 
 ```rust
-# #[cfg(all(feature = "proc_macro", feature = "futures03"))]
+# #[cfg(all(feature = "proc_macro", feature = "stream"))]
 # fn feature_gate() {
 # use futures::executor::block_on_stream;
 # use genawaiter::{sync::gen, yield_};
@@ -223,7 +223,7 @@ assert_eq!(items, [1, 2]);
 ```
 
 Async generators also provide a `async_resume` method for lower-level control. (This
-works even without the `futures03` feature.)
+works even without the `stream` feature.)
 
 ```rust
 # #[cfg(feature = "proc_macro")]

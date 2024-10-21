@@ -21,7 +21,7 @@
 
 ### Added
 
-- Implement `Stream` for generators. (requires opting in to the dependency with the feature `futures03`)
+- Implement `Stream` for generators. (requires opting in to the dependency with the feature `stream`)
 
 ## v0.2.1 – 2019-11-11
 

@@ -31,7 +31,7 @@ trybuild = "1"
 [features]
 alloc = []
 default = ["proc_macro", "rc", "sync"]
-futures03 = ["dep:futures-core"]
+stream = ["dep:futures-core"]
 nightly = []
 proc_macro = ["dep:genawaiter-proc-macro", "genawaiter-macro/proc_macro"]
 rc = []

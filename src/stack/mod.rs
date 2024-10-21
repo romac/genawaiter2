@@ -331,7 +331,7 @@ mod macros;
 mod engine;
 mod generator;
 mod iterator;
-#[cfg(feature = "futures03")]
+#[cfg(feature = "stream")]
 mod stream;
 
 #[cfg(feature = "nightly")]
