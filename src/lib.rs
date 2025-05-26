@@ -252,7 +252,6 @@ developers might recognize this as a polyfill.
 */
 
 #![cfg_attr(not(feature = "std"), no_std)]
-#![cfg_attr(feature = "nightly", feature(async_closure))]
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(missing_docs, clippy::cargo, clippy::pedantic)]
 

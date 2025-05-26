@@ -34,7 +34,6 @@ impl<Y, R, F: Future> Shelf<Y, R, F> {
 }
 
 impl<Y, R, F: Future> Default for Shelf<Y, R, F> {
-    #[must_use]
     fn default() -> Self {
         Self::new()
     }
@@ -140,7 +139,7 @@ impl<'s, Y, R, F: Future> Gen<'s, Y, R, F> {
     }
 }
 
-impl<'s, Y, R, F: Future> Drop for Gen<'s, Y, R, F> {
+impl<Y, R, F: Future> Drop for Gen<'_, Y, R, F> {
     fn drop(&mut self) {
         // Safety: `future` itself is a `MaybeUninit`, which is guaranteed to be
         // initialized, because the only way to construct a `Gen` is with
@@ -155,7 +154,7 @@ impl<'s, Y, R, F: Future> Drop for Gen<'s, Y, R, F> {
     }
 }
 
-impl<'s, Y, R, F: Future> Generator<R> for Gen<'s, Y, R, F> {
+impl<Y, R, F: Future> Generator<R> for Gen<'_, Y, R, F> {
     type Yield = Y;
     type Return = F::Output;
 

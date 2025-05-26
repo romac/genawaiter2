@@ -5,7 +5,6 @@ impl<'s, Y, F: Future<Output = ()>> IntoIterator for Gen<'s, Y, (), F> {
     type Item = Y;
     type IntoIter = IntoIter<'s, Y, F>;
 
-    #[must_use]
     fn into_iter(self) -> Self::IntoIter {
         IntoIter { generator: self }
     }
@@ -15,7 +14,7 @@ pub struct IntoIter<'s, Y, F: Future<Output = ()>> {
     generator: Gen<'s, Y, (), F>,
 }
 
-impl<'s, Y, F: Future<Output = ()>> Iterator for IntoIter<'s, Y, F> {
+impl<Y, F: Future<Output = ()>> Iterator for IntoIter<'_, Y, F> {
     type Item = Y;
 
     fn next(&mut self) -> Option<Self::Item> {
@@ -26,6 +25,7 @@ impl<'s, Y, F: Future<Output = ()>> Iterator for IntoIter<'s, Y, F> {
     }
 }
 
+#[allow(clippy::into_iter_without_iter)]
 impl<'r, 's, Y, F: Future<Output = ()>> IntoIterator for &'r mut Gen<'s, Y, (), F> {
     type Item = Y;
     type IntoIter = MutIntoIter<'r, 's, Y, F>;
@@ -39,7 +39,7 @@ pub struct MutIntoIter<'r, 's, Y, F: Future<Output = ()>> {
     generator: &'r mut Gen<'s, Y, (), F>,
 }
 
-impl<'r, 's, Y, F: Future<Output = ()>> Iterator for MutIntoIter<'r, 's, Y, F> {
+impl<Y, F: Future<Output = ()>> Iterator for MutIntoIter<'_, '_, Y, F> {
     type Item = Y;
 
     fn next(&mut self) -> Option<Self::Item> {

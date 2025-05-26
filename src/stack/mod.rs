@@ -415,8 +415,8 @@ mod tests {
     #[should_panic(expected = "Co::yield_")]
     fn multiple_yield_helpful_message() {
         async fn wrong(mut co: Co<'_, i32>) {
-            let _ = co.yield_(10);
-            let _ = co.yield_(20);
+            drop(co.yield_(10));
+            drop(co.yield_(20));
         }
 
         let_gen_using!(gen, wrong);
@@ -435,7 +435,7 @@ mod tests {
             GeneratorState::Yielded(_) => panic!(),
             GeneratorState::Complete(co) => co,
         };
-        let _ = escaped_co.yield_(10);
+        drop(escaped_co.yield_(10));
     }
 
     /// Test the unsafe `Gen::drop` implementation.

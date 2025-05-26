@@ -388,8 +388,8 @@ mod tests {
     #[should_panic(expected = "Co::yield_")]
     fn multiple_yield_helpful_message() {
         async fn wrong(mut co: Co<i32>) {
-            let _ = co.yield_(10);
-            let _ = co.yield_(20);
+            drop(co.yield_(10));
+            drop(co.yield_(20));
         }
 
         let mut gen = Gen::new(wrong);
@@ -408,7 +408,7 @@ mod tests {
             GeneratorState::Yielded(_) => panic!(),
             GeneratorState::Complete(co) => co,
         };
-        let _ = escaped_co.yield_(10);
+        drop(escaped_co.yield_(10));
     }
 
     /// This tests in a roundabout way that the `Gen` object can be moved. This

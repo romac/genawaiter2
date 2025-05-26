@@ -59,6 +59,6 @@ mod tests {
         // holds a reference to the airlock.
         drop(gen);
         // Now we're able to use an invalidated reference.
-        let _ = escaped_co.yield_(10);
+        drop(escaped_co.yield_(10));
     }
 }

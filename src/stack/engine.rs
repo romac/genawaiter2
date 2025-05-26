@@ -16,7 +16,7 @@ impl<Y, R> Default for Airlock<Y, R> {
     }
 }
 
-impl<'s, Y, R> core::Airlock for &'s Airlock<Y, R> {
+impl<Y, R> core::Airlock for &Airlock<Y, R> {
     type Yield = Y;
     type Resume = R;
 
